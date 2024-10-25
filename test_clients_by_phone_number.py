@@ -21,8 +21,9 @@ print(response.text.split("\"")[3])
 
 print(response.status_code)
 
-def test_clients_id():
-  url = f"{HOST}/clients/{95}" # Id клиента
+def test_clients_phoneNumber():
+  url = (f"{HOST}/clients/by-phone-number"
+         f"?phoneNumber=79636596465") # номеру телефона клиента
 
   payload = json.dumps({ })
   headers = {
@@ -32,5 +33,4 @@ def test_clients_id():
 
   response = requests.request("GET", url, headers=headers, data=payload)
   print(response.text)
-  print(response.json())
   print(response.status_code)

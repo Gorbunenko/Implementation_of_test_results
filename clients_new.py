@@ -17,20 +17,29 @@ headers = {
 response = requests.request("POST", url, headers=headers, data=payload)
 
 token=response.text.split("\"")[3]
-print(response.text.split("\"")[3])
 
-print(response.status_code)
 
-def test_clients_id():
-  url = f"{HOST}/clients/{95}" # Id клиента
 
-  payload = json.dumps({ })
-  headers = {
+url = (f"{HOST}/clients")
+
+payload = json.dumps({
+    "firstName": "Daniil",
+    "lastName": "Bukarev",
+    "middleName": "Maksimovich",
+    "sex": "MAN",
+    "phoneNumber": "87778898436149",
+    "birthday": "2024-10-25T11:20:43.645Z",
+    "active": True,
+    "identifiers": [
+        0
+]
+})
+headers = {
     'Content-Type': 'application/json',
+    'Accept': 'application/json',
     'Authorization': f'Bearer {token}'
-  }
+}
 
-  response = requests.request("GET", url, headers=headers, data=payload)
-  print(response.text)
-  print(response.json())
-  print(response.status_code)
+response = requests.request("POST", url, headers=headers, data=payload)
+print(response.text)
+print(response.status_code)
